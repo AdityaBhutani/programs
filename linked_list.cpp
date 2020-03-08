@@ -19,6 +19,29 @@ void delete_entire_linked_list(Node **head){
 	*head = NULL;
 }
 
+bool search_linked_list_iteratively(Node *current_node, int search_val){
+	while(current_node!=NULL){
+		if(current_node->data == search_val){
+			cout << "FOUND VALUE ITERATIVELY= " << search_val << endl;
+			return true;
+		}
+		current_node = current_node -> next;
+	}
+	cout << "COULDN'T FIND VALUE ITERATIVELY= " << search_val << endl;	
+	return false;
+}
+
+bool search_linked_list_recursively(Node *current_node, int search_val){
+	if(current_node == NULL){
+		cout << "COULDN'T FIND VALUE RECURSIVELY= " << search_val << endl;
+		return false;
+	}else if(current_node->data == search_val){
+		cout << "FOUND VALUE RECURSIVELY= " << search_val << endl;
+		return true;
+	}
+	return search_linked_list_recursively(current_node->next, search_val);
+}
+
 int main(){
 	int arr[] = {1,2,3,4,5};
 	Node *new_node, *current_node, *head=NULL;
@@ -57,6 +80,9 @@ int main(){
 	// DELETE FOR KEY ENDS HERE
 
 	// delete_entire_linked_list(&head);
+
+	search_linked_list_iteratively(head, 3);
+	search_linked_list_recursively(head, 3);
 
 	// TRAVERSAL STARTS HERE
 	current_node = head;
