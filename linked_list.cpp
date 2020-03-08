@@ -27,7 +27,7 @@ int main(){
 	// APPEND ENDS HERE
 
 	// DELETE FOR KEY STARTS HERE
-	int delete_node_value = 3;
+	int delete_node_value = 31;
 	Node *prev_node;
 	current_node = head, prev_node = NULL;
 	while(current_node != NULL){		
@@ -39,9 +39,7 @@ int main(){
 			prev_node -> next = current_node -> next;
 			free(current_node);
 		}
-		else{
-			prev_node = current_node;			
-		}
+		prev_node = current_node;
 		current_node = current_node -> next;
 	}
 	// DELETE FOR KEY ENDS HERE
