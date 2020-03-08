@@ -7,6 +7,18 @@ class Node{
 	Node *next;
 };
 
+void delete_entire_linked_list(Node **head){
+	Node *next_node, *current_node;
+	current_node = *head;
+	while(current_node!=NULL){
+		next_node = current_node -> next;
+		free(current_node);
+		current_node = next_node;
+	}
+	free(next_node);
+	*head = NULL;
+}
+
 int main(){
 	int arr[] = {1,2,3,4,5};
 	Node *new_node, *current_node, *head=NULL;
@@ -43,6 +55,8 @@ int main(){
 		current_node = current_node -> next;
 	}
 	// DELETE FOR KEY ENDS HERE
+
+	// delete_entire_linked_list(&head);
 
 	// TRAVERSAL STARTS HERE
 	current_node = head;
