@@ -7,6 +7,8 @@ class Node{
 	Node *next;
 };
 
+//IMP: if  we need to assign this pointer to another,
+//we should use double pointer,which we are passing as the parameter.
 void delete_entire_linked_list(Node **head){
 	Node *next_node, *current_node;
 	current_node = *head;
