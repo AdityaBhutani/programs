@@ -23,15 +23,15 @@ void delete_entire_linked_list(Node **head){
 }
 
 void find_middle_node_of_linked_list(Node **head){
-	Node *single_jump, *double_jump;
-	single_jump = *head, double_jump = *head;
-	while(double_jump -> next != NULL){
-		if(double_jump -> next -> next != NULL){
-			double_jump = double_jump -> next -> next;
+	Node *single_jump_ptr, *double_jump_ptr;
+	single_jump_ptr = *head, double_jump_ptr = *head;
+	while(double_jump_ptr -> next != NULL){
+		if(double_jump_ptr -> next -> next != NULL){
+			double_jump_ptr = double_jump_ptr -> next -> next;
 		}else{
-			double_jump = double_jump -> next;
+			double_jump_ptr = double_jump_ptr -> next;
 		}
-		single_jump = single_jump -> next;
+		single_jump_ptr = single_jump_ptr -> next;
 	}
 	cout << "The middle node of the linked list is = " <<single_jump -> data << endl;
 }
