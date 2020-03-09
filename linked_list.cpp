@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Node{
@@ -19,6 +20,20 @@ void delete_entire_linked_list(Node **head){
 	}
 	free(next_node);
 	*head = NULL;
+}
+
+void find_middle_node_of_linked_list(Node **head){
+	Node *single_jump, *double_jump;
+	single_jump = *head, double_jump = *head;
+	while(double_jump -> next != NULL){
+		if(double_jump -> next -> next != NULL){
+			double_jump = double_jump -> next -> next;
+		}else{
+			double_jump = double_jump -> next;
+		}
+		single_jump = single_jump -> next;
+	}
+	cout << "The middle node of the linked list is = " <<single_jump -> data << endl;
 }
 
 bool search_linked_list_iteratively(Node *current_node, int search_val){
@@ -45,10 +60,10 @@ bool search_linked_list_recursively(Node *current_node, int search_val){
 }
 
 int main(){
-	int arr[] = {1,2,3,4,5};
+	vector<int> arr = {1,2,3,4,5};
 	Node *new_node, *current_node, *head=NULL;
 	// APPEND STARTS HERE
-	for(int i=0; i<5;i++){
+	for(int i=0; i<arr.size(); i++){
 		new_node = new Node();
 		new_node -> data = arr[i];
 		new_node -> next = NULL;
@@ -85,6 +100,8 @@ int main(){
 
 	search_linked_list_iteratively(head, 3);
 	search_linked_list_recursively(head, 3);
+
+	find_middle_node_of_linked_list(&head);
 
 	// TRAVERSAL STARTS HERE
 	current_node = head;
