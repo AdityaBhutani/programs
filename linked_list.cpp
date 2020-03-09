@@ -22,7 +22,21 @@ void delete_entire_linked_list(Node **head){
 	*head = NULL;
 }
 
-void find_middle_node_of_linked_list(Node **head){
+int count_repetition_of_node_data(Node *head, int key){
+	//https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
+	if(head != NULL){
+		if(head -> data == key){
+			return 1 + count(head -> next, key);
+		}
+		else{
+			return count(head -> next, key);
+		}
+	}else{
+		return 0;
+	}
+}
+
+void find_middle_node_of_linked_list_using_2_pointers(Node **head){
 	Node *single_jump_ptr, *double_jump_ptr;
 	single_jump_ptr = *head, double_jump_ptr = *head;
 	while(double_jump_ptr -> next != NULL){
@@ -33,7 +47,7 @@ void find_middle_node_of_linked_list(Node **head){
 		}
 		single_jump_ptr = single_jump_ptr -> next;
 	}
-	cout << "The middle node of the linked list is = " <<single_jump -> data << endl;
+	cout << "The middle node of the linked list is = " <<single_jump_ptr -> data << endl;
 }
 
 bool search_linked_list_iteratively(Node *current_node, int search_val){
@@ -60,7 +74,7 @@ bool search_linked_list_recursively(Node *current_node, int search_val){
 }
 
 int main(){
-	vector<int> arr = {1,2,3,4,5};
+	vector<int> arr = {1,3,1,2,1};
 	Node *new_node, *current_node, *head=NULL;
 	// APPEND STARTS HERE
 	for(int i=0; i<arr.size(); i++){
@@ -101,7 +115,9 @@ int main(){
 	search_linked_list_iteratively(head, 3);
 	search_linked_list_recursively(head, 3);
 
-	find_middle_node_of_linked_list(&head);
+	find_middle_node_of_linked_list_using_2_pointers(&head);
+
+	cout << "COUNT OF 1 = " <<count_repetition_of_node_data(head, 1) << endl;
 
 	// TRAVERSAL STARTS HERE
 	current_node = head;
