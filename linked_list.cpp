@@ -8,8 +8,9 @@ class Node{
 	Node *next;
 };
 
-//IMP: if  we need to assign this pointer to another,
-//we should use double pointer,which we are passing as the parameter.
+//IMP: if  we need to assign this pointer to another, WAY 1
+//we should use double pointer,which we are accepting as the parameter when defining
+//we are passing the address of the pointer when calling
 void delete_entire_linked_list(Node **head){
 	Node *next_node, *current_node;
 	current_node = *head;
@@ -22,14 +23,37 @@ void delete_entire_linked_list(Node **head){
 	*head = NULL;
 }
 
+//IMP: if  we need to assign this pointer to another, WAY 2
+//function definition should accept pointer address, i.e., accepting address of pointer when defining
+//when called we pass the pointer
+int pairwise_swap_elements(Node &head){
+	//https://www.geeksforgeeks.org/pairwise-swap-elements-of-a-given-linked-list/
+	Node *first_in_pair, *second_in_pair;
+	first_in_pair = &head;
+	second_in_pair = first_in_pair -> next;
+	int temp;
+	while(second_in_pair!=NULL){		
+		temp = first_in_pair -> data;
+		first_in_pair -> data = second_in_pair -> data;
+		second_in_pair -> data = temp;
+		if (second_in_pair -> next != NULL){
+			first_in_pair = second_in_pair -> next;
+			second_in_pair = first_in_pair -> next;
+		}else{
+			return 0;
+		}
+	}
+	return 0;
+}
+
 int count_repetition_of_node_data(Node *head, int key){
 	//https://www.geeksforgeeks.org/write-a-function-that-counts-the-number-of-times-a-given-int-occurs-in-a-linked-list/
 	if(head != NULL){
 		if(head -> data == key){
-			return 1 + count(head -> next, key);
+			return 1 + count_repetition_of_node_data(head -> next, key);
 		}
 		else{
-			return count(head -> next, key);
+			return count_repetition_of_node_data(head -> next, key);
 		}
 	}else{
 		return 0;
@@ -74,7 +98,7 @@ bool search_linked_list_recursively(Node *current_node, int search_val){
 }
 
 int main(){
-	vector<int> arr = {1,3,1,2,1};
+	vector<int> arr = {1};
 	Node *new_node, *current_node, *head=NULL;
 	// APPEND STARTS HERE
 	for(int i=0; i<arr.size(); i++){
@@ -119,6 +143,17 @@ int main(){
 
 	cout << "COUNT OF 1 = " <<count_repetition_of_node_data(head, 1) << endl;
 
+	cout << endl << "BEFORE PAIR WISE ELEMENT SWAPPING" << endl;
+
+	current_node = head;
+	while(current_node!=NULL){
+		cout << current_node -> data << "     "; 
+		current_node = current_node -> next;
+	}
+
+	pairwise_swap_elements(*head);
+
+	cout << endl << "AFTER PAIR WISE ELEMENT SWAPPING" << endl;
 	// TRAVERSAL STARTS HERE
 	current_node = head;
 	while(current_node!=NULL){
