@@ -31,6 +31,16 @@ int main(){
 	if (finder -> second == ""){
 		cout << "FOUND ";
 	}
+	// CHECK IF VALUE EXISTS IN HASH(MAP/UNORDERED MAP) START
+
+	if (mp.count(99) > 0){
+		cout << "99 key is present in map";
+	}else{
+		cout << "99 key NOT present in map";
+	}
+
+	// CHECK IF VALUE EXISTS IN HASH(MAP/UNORDERED MAP) END
+
 	cout << "========================";
 	// IMP: get value from key END
 	map<int, string>::iterator it = mp.begin();	
