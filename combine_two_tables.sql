@@ -1,3 +1,11 @@
+-- https://leetcode.com/problems/combine-two-tables/
+
+-- "SQL - two tables are needed to be combined to find the city and state (which reside 
+-- in Address Table), this is acheived by Person Table Left Outer Joining on Address Table 
+-- which receives all the persons with addresses, even when the corresponding entry doesnt 
+-- exist in Address table"
+
+
 CREATE TABLE Person (PersonId int, FirstName VARCHAR(255), LastName VARCHAR(255));
 CREATE TABLE Address (AddressId int, PersonId int, City VARCHAR(255), State VARCHAR(255));
 
