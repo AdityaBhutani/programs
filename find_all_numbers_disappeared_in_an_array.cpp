@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -19,6 +20,7 @@ vector<int> findDisappearedNumbers_using_another_array(vector<int>& nums) {
 	return result;
 }
 
+// More Understanding - https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/discuss/344583/Python%3A-O(1)-space-solution
 // We are given that the nos in the given array will lie between the values 1 to n. ie., 1<=a[i]<=n
 // Here we have to mark the existence of the nos that are present and those that are not present
 // For this we can mark the existence and non-existence of a no. by marking the index of the number
