@@ -21,7 +21,7 @@ class BST{
 		if(parent == NULL){
 			return new BST(val);
 		}
-		if (parent -> key <= val){
+		if (val <= parent -> key ){
 			parent -> left = insert(parent -> left, val);
 		}else{
 			parent -> right = insert(parent -> right, val);
@@ -37,15 +37,30 @@ class BST{
 		cout << root -> key << endl;
 		inorder(root -> right);
 	}
+
+	BST* search(BST *root, int val){
+		if(root == NULL){
+			cout << "Value not Found" << endl;
+			return root;
+		}
+		if(root -> key == val){
+			cout << "Value Found" << endl;
+			return root;
+		}	
+		if(val < root -> key){
+			return search(root -> left, val);
+		}else{
+			return search(root -> right, val);
+		}
+	}
 };
 
 int main(){
 	BST tree, *root = NULL;
-	root = tree.insert(root, 10);
-	tree.insert(root, 20);
+	root = tree.insert(root, 20);
 	tree.insert(root, 30);
-	tree.insert(root, 40);
-	tree.insert(root, 50);
-
+	tree.insert(root, 10);
+	tree.search(root, 12);
 	tree.inorder(root);
+	// tree.search(root, 30);
 }
